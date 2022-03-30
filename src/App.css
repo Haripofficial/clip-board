@@ -1,0 +1,10 @@
+body{
+  margin: 0;
+  background-color: #FEFFFE;
+}
+.page{
+  color: black;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
