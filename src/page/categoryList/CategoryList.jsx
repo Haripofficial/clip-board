@@ -6,7 +6,6 @@ import { data } from "../../util";
 
 export default function CategoryList() {
   const [categoryList, setCategoryList] = useState(data().category);
-  console.log(categoryList);
 
   return (
     <>
@@ -17,6 +16,8 @@ export default function CategoryList() {
               color={category.color}
               title={category.title}
               key={index}
+              id = {category.id}
+              setCategoryList={setCategoryList}
             />
           </Link>
         );
