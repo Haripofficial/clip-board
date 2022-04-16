@@ -1,44 +1,47 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
-import CopyToClipboard from "react-copy-to-clipboard";
+
+import Code from "./code/Code";
 
 export default function ClipBoard({ data }) {
-  const [copy, setCopy] = useState(false);
   const [style, setStyle] = useState({ display: "none" });
 
-  useEffect(() => {
-    setTimeout(() => {
-      setCopy(false);
-    }, 3000);
-  }, [copy]);
+  console.log(typeof(data.code));
 
   return (
-    <div className="data-container">
-      <pre className="pre-description">
-        <ReactMarkdown>{data.description}</ReactMarkdown>
-      </pre>
-      {data.code && (
-        <CopyToClipboard text={data.code} onCopy={() => setCopy(true)}>
-          <div
-            className="language-markup"
-            onMouseEnter={(e) => {
-              setStyle({ display: "block" });
-            }}
-            onMouseLeave={(e) => {
-              setStyle({ display: "none" });
-            }}
-          >
-            <code>{data.code}</code>
-            <img src="/content_copy_black_24dp.svg" style={style} alt="copy" />
+    <>
+      <div
+        className="data-container"
+        onMouseEnter={(e) => {
+          setStyle({ display: "block" });
+        }}
+        onMouseLeave={(e) => {
+          setStyle({ display: "none" });
+        }}
+      >
+        <p className="pre-description">
+          <ReactMarkdown>{data.description}</ReactMarkdown>
+        </p>
+        {JSON.parse(data?.code).map((cod_e, index) => {
+          return <Code code={cod_e} key={index} />;
+        })}
+        <div className="clip-board-option-s">
+          <div className="clip-board-option" style={style}>
+            <button
+              className="edit"
+              onClick={() => alert("feature will be added soon..")}
+            >
+              Edit
+            </button>
+            <button
+              className="delete"
+              onClick={() => alert("feature will be added soon..")}
+            >
+              Delete
+            </button>
           </div>
-        </CopyToClipboard>
-      )}
-      {copy && (
-        <div className="floating-notification">
-          <img src="/check_black_24dp.svg" alt="checked" />
-          Copied to clipboard!
         </div>
-      )}
-    </div>
+      </div>
+    </>
   );
 }

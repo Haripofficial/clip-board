@@ -1,25 +1,34 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import { data } from "../../util";
+import SheetDB from "sheetdb-js";
+import { UserData } from "../../util";
 
-export default function AddCategory({setCategoryList}) {
-  const [showModel, setShowModel] = useState(false);
+export default function AddCategory({showModel, setShowModel  }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [color, setColor] = useState("#563d7c");
 
   const submitCategory = () => {
-    const updatedData = data();
     const newCategory = {
-        title:title,
-        description:description,
-        color:color,
-        clips:[],
-        id: Date.now()
-    }
-    updatedData.category.push(newCategory)
-    setCategoryList(updatedData.category)
-    localStorage.setItem("Data", JSON.stringify(updatedData));
+      title: title,
+      description: description,
+      color: color,
+      id: Date.now(),
+      userId: UserData().googleId,
+    };
+
+    SheetDB.write("https://sheetdb.io/api/v1/hkyghyrcrssot", {
+      sheet: "category",
+      data: newCategory,
+    }).then(
+      function (result) {
+        console.log(result);
+      },
+      function (error) {
+        console.log(error);
+      }
+    );
+
     setShowModel(false);
   };
 
@@ -43,7 +52,7 @@ export default function AddCategory({setCategoryList}) {
               type="text"
               placeholder="Enter Name"
               name="userName"
-                onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) => setTitle(e.target.value)}
               autoComplete="off"
             />
             <label htmlFor="floatingInputCustom">Title</label>
@@ -54,7 +63,7 @@ export default function AddCategory({setCategoryList}) {
               type="text"
               placeholder="Enter Description"
               name="userName"
-                onChange={(e) => setDescription(e.target.value)}
+              onChange={(e) => setDescription(e.target.value)}
               autoComplete="off"
             />
             <label htmlFor="floatingInputCustom-decription">Decription</label>

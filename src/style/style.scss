@@ -3,27 +3,6 @@
   margin-left: 12px;
   font-size: 16px;
 }
-.category-item {
-  font-size: 13px;
-  line-height: 1.30769231;
-  border-radius: 5px;
-  padding: 12px;
-  overflow: auto;
-  background-color: aquamarine;
-  margin: 10px;
-  justify-content: center;
-  display: flex;
-  height: 60px;
-  align-items: center;
-  &:hover {
-    filter: brightness(0.8);
-  }
-  p {
-    &:hover {
-      filter: brightness(200%) !important;
-    }
-  }
-}
 a {
   text-decoration: none;
   color: white;
@@ -32,9 +11,56 @@ a {
   }
 }
 .page {
+  .category-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .category-item {
+    font-size: 13px;
+    line-height: 1.30769231;
+    border-radius: 5px;
+    padding: 12px;
+    overflow: auto;
+    background-color: aquamarine;
+    margin: 10px;
+    justify-content: center;
+    display: flex;
+    height: 60px;
+    align-items: center;
+    &:hover {
+      filter: brightness(0.8);
+    }
+    p {
+      &:hover {
+        filter: brightness(200%) !important;
+      }
+    }
+  }
+
+  @-webkit-keyframes fill {
+    to {
+      background-size: 100% 0;
+    }
+  }
+  @keyframes fill {
+    to {
+      background-size: 0 100%;
+    }
+  }
+  .cnh_holding {
+    background: -webkit-linear-gradient(white, white) rgb(255, 215, 235)
+      no-repeat 0 0;
+    background: linear-gradient(white, white) rgb(255, 215, 235) no-repeat 0 0;
+    mix-blend-mode: multiply;
+    background-size: 100% 100%;
+    -webkit-animation: fill 2s forwards;
+    animation: fill 2s forwards;
+  }
+
   .data-container {
     width: 95%;
-    padding: 2%;
+    padding: 0.5%;
     border-bottom: 1px solid hsl(210, 8%, 90%);
     .pre-description {
       font-size: 13px;
@@ -42,24 +68,25 @@ a {
       color: hsl(210, 8%, 20%);
       background-color: hsl(0, 0%, 96.5%);
       border-radius: 5px;
-      margin: 0;
+      margin-top: 20px;
       padding: 12px;
       overflow: auto;
+    }
+    code {
+      white-space: break-spaces;
     }
     .language-markup {
       background-color: #0c0c0c;
       border-radius: 5px;
       padding: 12px;
       margin: 10px;
+      margin-bottom: 0;
       display: flex;
       justify-content: space-between;
       img {
-        padding: 5px 8px;
-        width: 35px;
-        // visibility: hidden;
-        // &:hover{
-        //   visibility: visible;
-        // }
+        padding: 0px 8px;
+        width: 32px;
+        height: 20px;
       }
     }
     .floating-notification {
@@ -76,7 +103,7 @@ a {
     }
   }
   a {
-    width: 100%;
+    width: 25%;
   }
   .center-add {
     width: 95%;
@@ -87,21 +114,22 @@ a {
       border: 4px solid #858585 !important;
       border-radius: 10px !important;
     }
+    .code-input {
+      min-height: 80px;
+      padding: 10px;
+      width: 100%;
+      border-radius: 10px;
+      border: 4px solid #858585;
+      margin: 10px 0 0;
+    }
     .submit-clipBoard {
       display: flex;
       justify-content: space-between;
       margin: 10px 0;
-      .code-input {
-        min-height: 80px;
-        padding: 10px;
-        width: calc(90% - 5px);
-        border-radius: 10px;
-        border: 4px solid #858585;
-      }
       span {
         height: 80px;
         background-color: rgb(46, 40, 40);
-        width: calc(10% - 5px);
+        width: calc(50% - 5px);
         padding: 1em 2em;
         transition: 0.25s;
         border-radius: 10px;
@@ -136,6 +164,41 @@ a {
   .description-error {
     .react-mde {
       border: 4px solid #d80000 !important;
+    }
+  }
+  .clip-board-option-s {
+    margin-top: 5px;
+    height: 22px;
+    width: 100%;
+  }
+  .clip-board-option {
+    width: 99%;
+    button {
+      float: right;
+      outline: none;
+      font-size: small;
+      background: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 3px;
+      margin-left: 5px;
+    }
+    .edit {
+      background: #2199e8;
+      color: #ffffff;
+
+      &:hover {
+        background: darken(#2199e8, 10%);
+      }
+    }
+
+    .delete {
+      background: #ec5840;
+      color: #ffffff;
+
+      &:hover {
+        background: darken(#ec5840, 10%);
+      }
     }
   }
 }

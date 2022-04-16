@@ -1,0 +1,36 @@
+.login-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #7fe0a7;
+  .google-button {
+    box-shadow: none !important;
+    z-index: 10;
+    border: 1.5px solid #7fa6e0 !important;
+    display: flex !important;
+    width: 14.5rem !important;
+    height: 65px !important;
+    align-items: center;
+    div {
+      height: 70px !important;
+      width: 25% !important;
+      background-color: transparent !important;
+    }
+    svg {
+      width: 70px !important;
+      height: 70px !important;
+    }
+    span {
+      margin-left: 6px;
+      color: #666c72;
+      font-size: 15px;
+      font-family: "Nunito Sans", sans-serif;
+    }
+    &:hover {
+      background-color: rgba(65, 154, 249, 0.1) !important;
+    }
+  }
+}

@@ -1,8 +1,8 @@
-body{
+body {
   margin: 0;
-  background-color: #FEFFFE;
+  background-color: #fefffe;
 }
-.page{
+.page {
   color: black;
   display: flex;
   align-items: center;
